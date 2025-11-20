@@ -1,13 +1,8 @@
 import type { NextConfig } from "next";
 
-const isProd = process.env.NODE_ENV === 'production';
-const repoName = ''; // Replace with your actual repository name
-
 const nextConfig: NextConfig = {
   output: 'export',
-  trailingSlash: true,
-  basePath: isProd ? `/${repoName}` : '',
-  assetPrefix: isProd ? `/${repoName}/` : '',
+  basePath: process.env.NEXT_PUBLIC_BASE_PATH || '',
   images: {
     unoptimized: true,
   },
