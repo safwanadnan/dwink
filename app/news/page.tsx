@@ -376,7 +376,7 @@ export default function NewsPage() {
 
           <div className="border-t border-red-500 mt-8 pt-8">
             <div className="text-center text-sm mb-4">
-              <p>Rita Food & Drink Co., Ltd. 2004-2023. All Rights Reserved Development by RITA Beverage Company</p>
+              <p>Rita Food & Drink Co., Ltd. 2004-2025. All Rights Reserved Development by RITA Beverage Company</p>
             </div>
             <div className="flex justify-center space-x-4 text-sm">
               <a href="#" className="hover:text-red-200 transition-colors">About us</a>

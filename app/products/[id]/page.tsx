@@ -276,7 +276,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
           </div>
 
           <div className="border-t border-slate-300 pt-4 text-xs">
-            <p className="mb-2">Dwink 2004 - 2023. All Rights Reserved Development by Dwink Beverage Company</p>
+            <p className="mb-2">Dwink 2004 - 2025. All Rights Reserved Development by Dwink Beverage Company</p>
             <div className="flex justify-center space-x-4">
               <a href="#" className="hover:text-green-600">About us</a>
               <span>|</span>
