@@ -22,7 +22,7 @@ function ProductsContent() {
   }, [searchParams]);
 
   const filters = [
-    "Show All", "Basil Seed", "Nata de Coco", "Falooda"
+    "Show All", "Basil Seed", "Nata de Coco", "Falooda", "Aloe Vera", "Chia Seed"
   ];
 
   // Filter products based on active filter
@@ -108,7 +108,7 @@ function ProductsContent() {
                       alt={product.name}
                       width={200}
                       height={200}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                      className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300"
                     />
                   </div>
                   <div className="p-1 md:p-2 lg:p-4">

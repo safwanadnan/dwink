@@ -145,7 +145,7 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8">
             {[
               { 
                 name: "Basil Seed Drinks", 
@@ -161,6 +161,16 @@ export default function AboutPage() {
                 name: "Falooda", 
                 image: products.find(p => p.category === 'Falooda')?.image,
                 description: "Traditional South Asian dessert drinks with modern appeal"
+              },
+              { 
+                name: "Aloe Vera Drinks", 
+                image: products.find(p => p.category === 'Aloe Vera')?.image,
+                description: "Healthy aloe vera beverages with natural healing properties"
+              },
+              { 
+                name: "Chia Seed Drinks", 
+                image: products.find(p => p.category === 'Chia Seed')?.image,
+                description: "Nutritious chia seed drinks packed with omega-3 and fiber"
               }
             ].map((category, index) => (
               <div key={index} className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
@@ -170,7 +180,7 @@ export default function AboutPage() {
                     alt={category.name}
                     width={400}
                     height={400}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-contain"
                   />
                 </div>
                 <div className="p-8">

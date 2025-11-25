@@ -55,11 +55,13 @@ export default function Home() {
             CATEGORIES
           </h2>
 
-          <div className="flex justify-center gap-6 md:gap-12 lg:gap-20">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6 lg:gap-8 max-w-6xl mx-auto">
             {[
               { name: "BASIL SEED", image: products.find(p => p.category === 'Basil Seed')?.image, gradient: "bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50", filter: "Basil Seed" },
               { name: "NATA DE COCO", image: products.find(p => p.category === 'Nata de Coco')?.image, gradient: "bg-gradient-to-br from-blue-50 via-cyan-50 to-indigo-50", filter: "Nata de Coco" },
               { name: "FALOODA", image: products.find(p => p.category === 'Falooda')?.image, gradient: "bg-gradient-to-br from-yellow-50 via-orange-50 to-red-50", filter: "Falooda" },
+              { name: "ALOE VERA", image: products.find(p => p.category === 'Aloe Vera')?.image, gradient: "bg-gradient-to-br from-purple-50 via-pink-50 to-rose-50", filter: "Aloe Vera" },
+              { name: "CHIA SEED", image: products.find(p => p.category === 'Chia Seed')?.image, gradient: "bg-gradient-to-br from-gray-50 via-slate-50 to-zinc-50", filter: "Chia Seed" },
             ].map((category) => (
               <Link key={category.name} href={`/products?filter=${encodeURIComponent(category.filter)}`} className="flex flex-col items-center group flex-shrink-0">
                 <div className={`w-24 h-24 md:w-40 md:h-40 lg:w-64 lg:h-64 ${category.gradient} rounded-full flex items-center justify-center mb-3 md:mb-6 group-hover:scale-105 transition-transform overflow-hidden shadow-lg border-4 border-white`}>
