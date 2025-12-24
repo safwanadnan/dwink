@@ -66,15 +66,16 @@ function ProductsContent() {
       </div>
 
       {/* Page Header */}
-      <section className="py-16 bg-gradient-to-r from-green-50 to-blue-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="relative h-[80vh] w-full overflow-hidden flex items-center justify-center" style={{background: 'linear-gradient(135deg, #86efac 0%, #67e8f9 50%, #7dd3fc 100%)'}}>
+        <div className="absolute inset-0 bg-black/20"></div>
+        <div className="text-center text-white z-10 max-w-6xl mx-auto px-4">
           <div className="flex justify-center">
             <Image
               src={logo}
               alt="Dwink Logo"
-              width={300}
-              height={150}
-              className="h-24 md:h-32 lg:h-40 w-auto"
+              width={400}
+              height={200}
+              className="h-32 md:h-48 lg:h-64 w-auto"
             />
           </div>
         </div>
@@ -83,9 +84,7 @@ function ProductsContent() {
       {/* Products Section */}
       <section className="py-16 bg-white">
         <div className="container-wide">
-          <h2 className="text-xl md:text-2xl lg:text-4xl font-bold text-teal-600 text-center mb-6 md:mb-12">
-            DWINK BEVERAGE PRODUCTS
-          </h2>
+
           
           {/* Category Filters */}
           <div className="flex flex-wrap justify-center gap-4 mb-8">
@@ -95,9 +94,10 @@ function ProductsContent() {
                 onClick={() => handleFilterChange(category)}
                 className={`px-4 py-2 rounded transition-all duration-300 text-sm font-medium ${
                   activeFilter === category 
-                    ? 'bg-teal-500 text-white shadow-lg transform scale-105' 
+                    ? 'text-white shadow-lg transform scale-105' 
                     : 'bg-slate-200 text-slate-700 hover:bg-slate-300 hover:scale-105'
                 }`}
+                style={activeFilter === category ? {backgroundColor: '#023E0B'} : {}}
               >
                 {category}
               </button>
@@ -112,9 +112,10 @@ function ProductsContent() {
                 onClick={() => handleBottleFilterChange(bottle)}
                 className={`px-4 py-2 rounded transition-all duration-300 text-sm font-medium ${
                   bottleFilter === bottle 
-                    ? 'bg-blue-500 text-white shadow-lg transform scale-105' 
+                    ? 'text-white shadow-lg transform scale-105' 
                     : 'bg-gray-200 text-gray-700 hover:bg-gray-300 hover:scale-105'
                 }`}
+                style={bottleFilter === bottle ? {backgroundColor: '#023E0B'} : {}}
               >
                 {bottle}
               </button>
@@ -238,9 +239,10 @@ function ProductsContent() {
                       onClick={() => setCurrentPage(page)}
                       className={`w-10 h-10 rounded-full transition-all duration-300 ${
                         isCurrentPage 
-                          ? 'bg-red-600 text-white shadow-lg transform scale-110' 
+                          ? 'text-white shadow-lg transform scale-110' 
                           : 'bg-gray-200 text-gray-700 hover:bg-gray-300 hover:scale-105'
                       }`}
+                      style={isCurrentPage ? {backgroundColor: '#023E0B'} : {}}
                     >
                       {page}
                     </button>
@@ -271,7 +273,8 @@ function ProductsContent() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 
               href="/contact" 
-              className="bg-green-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-green-700 transition-colors transform hover:scale-105"
+              className="text-white px-8 py-4 rounded-lg font-semibold transition-colors transform hover:scale-105"
+              style={{backgroundColor: '#023E0B'}}
             >
               Contact Us
             </Link>
@@ -302,13 +305,18 @@ function ProductsContent() {
             </div>
             <div className="flex justify-center items-center gap-2 mb-2">
               <span>Parent Company:</span>
+              <Link href="https://shop.freshmate.pk/" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity" style={{color: '#023E0B'}}>
+                freshmate.co
+              </Link>
+            </div>
+            <div className="flex justify-center mb-2">
               <Link href="https://shop.freshmate.pk/" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity">
                 <Image
                   src={freshmatelogo}
                   alt="Freshmate Logo"
-                  width={120}
-                  height={60}
-                  className="h-12 w-auto"
+                  width={170}
+                  height={85}
+                  className="h-16 w-auto"
                 />
               </Link>
             </div>

@@ -13,8 +13,10 @@ export default function Home() {
     <div className="min-h-screen bg-white">
       <Navigation currentPage="Home" />
 
+
+
       {/* Hero Section - Large Banner Image */}
-      <section className="relative h-[80vh] w-full overflow-hidden flex items-center justify-center" style={{background: 'linear-gradient(135deg, #14b8a6 0%, #0891b2 50%, #06b6d4 100%)'}}>
+      <section className="relative h-[80vh] w-full overflow-hidden flex items-center justify-center" style={{background: 'linear-gradient(135deg, #86efac 0%, #67e8f9 50%, #7dd3fc 100%)'}}>
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="text-center text-white z-10 max-w-6xl mx-auto px-4">
           <div className="flex justify-center mb-8">
@@ -40,7 +42,7 @@ export default function Home() {
       {/* Categories Section */}
       <section className="py-8 md:py-16 bg-gray-100">
         <div className="container mx-auto px-4">
-          <h2 className="text-2xl md:text-4xl font-bold text-green-600 text-center mb-6 md:mb-12">
+          <h2 className="text-2xl md:text-4xl font-bold text-center mb-6 md:mb-12" style={{color: '#023E0B'}}>
             CATEGORIES
           </h2>
 
@@ -83,7 +85,7 @@ export default function Home() {
       <section className="py-20 bg-slate-100">
         <div className="container-wide">
           <div className="text-center mb-12">
-            <h2 className="text-xl md:text-2xl lg:text-4xl font-bold text-slate-700 mb-2">WHY CHOOSE US</h2>
+            <h2 className="text-xl md:text-2xl lg:text-4xl font-bold mb-2" style={{color: '#023E0B'}}>WHY CHOOSE US</h2>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 md:gap-8 max-w-6xl mx-auto">
@@ -113,7 +115,7 @@ export default function Home() {
       <section className="py-8 bg-white border-none">
         <div className="container-wide">
           <div className="text-center mb-8">
-            <h2 className="text-2xl md:text-3xl font-bold text-green-600 mb-4">CERTIFICATIONS</h2>
+            <h2 className="text-2xl md:text-3xl font-bold mb-4" style={{color: '#023E0B'}}>CERTIFICATIONS</h2>
           </div>
 
           {/* Certification Logos */}
@@ -160,13 +162,18 @@ export default function Home() {
             </div>
             <div className="flex justify-center items-center gap-2 mb-2">
               <span>Parent Company:</span>
+              <Link href="https://shop.freshmate.pk/" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity" style={{color: '#023E0B'}}>
+                freshmate.co
+              </Link>
+            </div>
+            <div className="flex justify-center mb-2">
               <Link href="https://shop.freshmate.pk/" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity">
                 <Image
                   src={freshmatelogo}
                   alt="Freshmate Logo"
-                  width={120}
-                  height={60}
-                  className="h-12 w-auto"
+                  width={170}
+                  height={85}
+                  className="h-16 w-auto"
                 />
               </Link>
             </div>

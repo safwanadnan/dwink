@@ -10,28 +10,7 @@ export default function AboutPage() {
     <div className="min-h-screen bg-white">
       <Navigation currentPage="About Us" />
 
-      {/* Hero Section */}
-      <section className="relative h-[40vh] w-full overflow-hidden flex items-center justify-center" style={{background: 'linear-gradient(135deg, #C2eaba 0%, #b8e5a8 50%, #C2eaba 100%)'}}>
-        <div className="text-center text-gray-800 z-10">
-          <div className="flex justify-center">
-            <Image
-              src={logo}
-              alt="Dwink Logo"
-              width={300}
-              height={150}
-              className="h-24 md:h-32 lg:h-40 w-auto"
-            />
-          </div>
-        </div>
-        
-        {/* Floating Elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-20 left-20 w-20 h-20 bg-orange-400 rounded-full opacity-20 animate-pulse"></div>
-          <div className="absolute top-40 right-32 w-16 h-16 bg-yellow-400 rounded-full opacity-20 animate-pulse delay-1000"></div>
-          <div className="absolute bottom-32 left-40 w-24 h-24 bg-green-400 rounded-full opacity-20 animate-pulse delay-2000"></div>
-          <div className="absolute bottom-20 right-20 w-18 h-18 bg-red-400 rounded-full opacity-20 animate-pulse delay-3000"></div>
-        </div>
-      </section>
+
 
       {/* Our Story Section */}
       <section className="py-20 bg-white">
@@ -244,13 +223,18 @@ export default function AboutPage() {
             </div>
             <div className="flex justify-center items-center gap-2 mb-2">
               <span>Parent Company:</span>
+              <Link href="https://shop.freshmate.pk/" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity" style={{color: '#023E0B'}}>
+                freshmate.co
+              </Link>
+            </div>
+            <div className="flex justify-center mb-2">
               <Link href="https://shop.freshmate.pk/" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity">
                 <Image
                   src={freshmatelogo}
                   alt="Freshmate Logo"
-                  width={120}
-                  height={60}
-                  className="h-12 w-auto"
+                  width={170}
+                  height={85}
+                  className="h-16 w-auto"
                 />
               </Link>
             </div>

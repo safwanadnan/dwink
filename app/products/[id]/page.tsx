@@ -265,13 +265,18 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
             </div>
             <div className="flex justify-center items-center gap-2 mb-2">
               <span>Parent Company:</span>
+              <Link href="https://shop.freshmate.pk/" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity" style={{color: '#023E0B'}}>
+                freshmate.co
+              </Link>
+            </div>
+            <div className="flex justify-center mb-2">
               <Link href="https://shop.freshmate.pk/" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity">
                 <Image
                   src={freshmatelogo}
                   alt="Freshmate Logo"
-                  width={120}
-                  height={60}
-                  className="h-12 w-auto"
+                  width={170}
+                  height={85}
+                  className="h-16 w-auto"
                 />
               </Link>
             </div>

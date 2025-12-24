@@ -2,7 +2,7 @@ import { StaticImageData } from 'next/image';
 
 // Logo
 import logo from './mainlogo.png';
-import freshmatelogo from './freshmatelogp.jpeg';
+import freshmatelogo from './freshmatelogp.png';
 
 // Basil Seed Products
 import basilSeedApple from './products/Basil Seed Apple.png';

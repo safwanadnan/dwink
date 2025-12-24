@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { logo } from "../app/assets/products";
+import { logo, freshmatelogo } from "../app/assets/products";
 
 interface NavigationProps {
   currentPage?: string;
@@ -23,19 +23,24 @@ export default function Navigation({ }: NavigationProps) {
   const getLinkClass = (path: string) => {
     const baseClass = "nav-link font-bold uppercase transition-colors";
     return isActive(path) 
-      ? `${baseClass} text-red-600` 
-      : `${baseClass} text-gray-900 hover:text-red-600`;
+      ? `${baseClass}` 
+      : `${baseClass} text-gray-900 hover:text-green-800`;
   };
 
   return (
     <header className="bg-white sticky top-0 z-50 shadow-sm">
       {/* Top Bar */}
-      <div className="bg-teal-600 text-white py-2">
+      <div className="bg-teal-600 text-white py-1">
         <div className="container-wide">
           <div className="flex justify-center">
-            <span className="text-sm">Parent Company: </span>
-            <Link href="https://shop.freshmate.pk/" target="_blank" rel="noopener noreferrer" className="text-sm font-medium hover:underline ml-1">
-              freshmate.pk
+            <Link href="https://shop.freshmate.pk/" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity mr-12">
+              <Image
+                src={freshmatelogo}
+                alt="Freshmate Logo"
+                width={180}
+                height={85}
+                className="h-10 w-auto"
+              />
             </Link>
           </div>
         </div>
@@ -47,8 +52,8 @@ export default function Navigation({ }: NavigationProps) {
           <div className="flex items-center justify-between h-20">
             {/* Left Navigation */}
             <nav className="hidden lg:flex items-center space-x-8">
-              <Link href="/" className={getLinkClass("/")}>HOME</Link>
-              <Link href="/products" className={getLinkClass("/products")}>PRODUCTS</Link>
+              <Link href="/" className={getLinkClass("/")} style={isActive("/") ? {color: '#023E0B'} : {}}>HOME</Link>
+              <Link href="/products" className={getLinkClass("/products")} style={isActive("/products") ? {color: '#023E0B'} : {}}>PRODUCTS</Link>
             </nav>
 
             {/* Center Logo */}
@@ -65,8 +70,8 @@ export default function Navigation({ }: NavigationProps) {
 
             {/* Right Navigation */}
             <nav className="hidden lg:flex items-center space-x-8">
-              <Link href="/about" className={getLinkClass("/about")}>ABOUT US</Link>
-              <Link href="/contact" className={getLinkClass("/contact")}>CONTACT US</Link>
+              <Link href="/about" className={getLinkClass("/about")} style={isActive("/about") ? {color: '#023E0B'} : {}}>ABOUT US</Link>
+              <Link href="/contact" className={getLinkClass("/contact")} style={isActive("/contact") ? {color: '#023E0B'} : {}}>CONTACT US</Link>
             </nav>
 
             {/* Mobile Menu Button */}
@@ -90,29 +95,33 @@ export default function Navigation({ }: NavigationProps) {
           <div className="px-4 py-2 space-y-2">
             <Link 
               href="/" 
-              className={`block py-2 font-bold uppercase ${isActive("/") ? "text-red-600" : "text-gray-900 hover:text-red-600"}`}
+              className={`block py-2 font-bold uppercase ${isActive("/") ? "" : "text-gray-900 hover:text-green-800"}`}
               onClick={() => setMobileMenuOpen(false)}
+              style={isActive("/") ? {color: '#023E0B'} : {}}
             >
               HOME
             </Link>
             <Link 
               href="/about" 
-              className={`block py-2 font-bold uppercase ${isActive("/about") ? "text-red-600" : "text-gray-900 hover:text-red-600"}`}
+              className={`block py-2 font-bold uppercase ${isActive("/about") ? "" : "text-gray-900 hover:text-green-800"}`}
               onClick={() => setMobileMenuOpen(false)}
+              style={isActive("/about") ? {color: '#023E0B'} : {}}
             >
               ABOUT US
             </Link>
             <Link 
               href="/products" 
-              className={`block py-2 font-bold uppercase ${isActive("/products") ? "text-red-600" : "text-gray-900 hover:text-red-600"}`}
+              className={`block py-2 font-bold uppercase ${isActive("/products") ? "" : "text-gray-900 hover:text-green-800"}`}
               onClick={() => setMobileMenuOpen(false)}
+              style={isActive("/products") ? {color: '#023E0B'} : {}}
             >
               PRODUCTS
             </Link>
             <Link 
               href="/contact" 
-              className={`block py-2 font-bold uppercase ${isActive("/contact") ? "text-red-600" : "text-gray-900 hover:text-red-600"}`}
+              className={`block py-2 font-bold uppercase ${isActive("/contact") ? "" : "text-gray-900 hover:text-green-800"}`}
               onClick={() => setMobileMenuOpen(false)}
+              style={isActive("/contact") ? {color: '#023E0B'} : {}}
             >
               CONTACT US
             </Link>
