@@ -1,8 +1,9 @@
 'use client';
 
 import Image from "next/image";
+import Link from "next/link";
 import Navigation from "../../components/Navigation";
-import { products, logo, certificates } from "../assets/products";
+import { products, logo, certificates, freshmatelogo } from "../assets/products";
 
 export default function AboutPage() {
   return (
@@ -12,11 +13,15 @@ export default function AboutPage() {
       {/* Hero Section */}
       <section className="relative h-[40vh] w-full overflow-hidden flex items-center justify-center" style={{background: 'linear-gradient(135deg, #C2eaba 0%, #b8e5a8 50%, #C2eaba 100%)'}}>
         <div className="text-center text-gray-800 z-10">
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4" style={{ fontFamily: 'cursive' }}>About Dwink</h1>
-          <p className="text-lg md:text-xl lg:text-2xl mb-4">A Legacy of Excellence</p>
-          <p className="text-base md:text-lg opacity-90 max-w-2xl mx-auto">
-            Building on 50+ years of family business experience across multiple industries
-          </p>
+          <div className="flex justify-center">
+            <Image
+              src={logo}
+              alt="Dwink Logo"
+              width={300}
+              height={150}
+              className="h-24 md:h-32 lg:h-40 w-auto"
+            />
+          </div>
         </div>
         
         {/* Floating Elements */}
@@ -36,10 +41,13 @@ export default function AboutPage() {
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8">Our Story</h2>
               <div className="space-y-6 text-lg text-gray-700 leading-relaxed">
                 <p>
-                  Dwink is the beverage division of a family legacy that has shaped Pakistan&apos;s food industry for decades. Founded by the same visionary family behind Freshmate, Pakistan&apos;s first ready-to-eat meal brand, we carry forward over 50 years of business experience across textiles, pharmaceuticals, poultry, and fruit farming — industries that taught us precision, quality, and consistency.
+                  Dwink is the beverage division of the family behind Freshmate, Pakistan&apos;s first ready-to-eat meal brand, known for its complete range of ready meals and seasonings trusted by consumers both locally and globally. Freshmate products are exported to over 20 countries, serving travelers, professionals, and families who rely on consistent taste, halal assurance, and long shelf life without compromise. That same operational discipline, food safety rigor, and consumer trust form the foundation of Dwink.
                 </p>
                 <p>
-                  Building on the trust and success of Freshmate, we ventured into the beverage sector five years ago, determined to bring the same innovation and commitment to quality into a new category. Thus, Dwink was born — a line of premium, refreshing, and innovative beverages designed for modern consumers who value both taste and health.
+                  Learn more about Freshmate at{' '}
+                  <Link href="https://shop.freshmate.pk/" target="_blank" rel="noopener noreferrer" className="text-green-600 hover:text-green-700 font-medium">
+                    shop.freshmate.pk
+                  </Link>.
                 </p>
               </div>
             </div>
@@ -53,12 +61,6 @@ export default function AboutPage() {
                   height={600}
                   className="w-full h-full object-cover"
                 />
-              </div>
-              <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center shadow-xl">
-                <div className="text-white text-center">
-                  <div className="text-3xl font-bold">50+</div>
-                  <div className="text-sm">Years Legacy</div>
-                </div>
               </div>
             </div>
           </div>
@@ -116,18 +118,14 @@ export default function AboutPage() {
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8">Dwink Today</h2>
               <div className="space-y-6 text-lg text-gray-700 leading-relaxed">
                 <p>
-                  From Basil Seed Juices to Nata de Coco blends, every Dwink bottle reflects our promise of uncompromising quality, hygienic production, and authentic flavor. Today, Dwink stands as one of Pakistan&apos;s leading beverage brands, continually expanding its range to serve a wider audience across local and international markets.
+                  Backed by over 50 years of business experience across textiles, pharmaceuticals, poultry, and fruit farming, the family brings deep expertise in quality control, sourcing, and scalable manufacturing. Five years ago, building on Freshmate&apos;s success, we entered the beverage category with a clear objective: to raise standards in taste, formulation, and reliability. The result is Dwink — a range of premium, refreshing beverages crafted for modern consumers who expect both great taste and smarter choices.
                 </p>
               </div>
               
-              <div className="grid grid-cols-2 gap-6 mt-10">
+              <div className="grid grid-cols-1 gap-6 mt-10">
                 <div className="text-center">
                   <div className="text-4xl font-bold text-green-600 mb-2">5+</div>
                   <div className="text-gray-600">Years in Beverages</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-green-600 mb-2">#1</div>
-                  <div className="text-gray-600">Leading Brand</div>
                 </div>
               </div>
             </div>
@@ -238,31 +236,23 @@ export default function AboutPage() {
               height={75}
               className="h-16 w-auto mb-2"
             />
-            <h3 className="text-xl font-bold">Dwink</h3>
           </div>
           
           <div className="text-sm mb-4">
             <div className="flex justify-center space-x-6 mb-2">
               <span>Email: info@dwink.pk</span>
             </div>
-            <div className="flex justify-center space-x-6 mb-2">
-              <span>Parent Company: info@freshmate.pk</span>
-            </div>
-            <div className="flex justify-center">
-              <span>PO Box: 13002</span>
-            </div>
-          </div>
-
-          <div className="border-t border-slate-300 pt-4 text-xs">
-            <p className="mb-2">Dwink 2004 - 2025. All Rights Reserved Development by Dwink Beverage Company</p>
-            <div className="flex justify-center space-x-4">
-              <a href="#" className="hover:text-green-600">About us</a>
-              <span>|</span>
-              <a href="#" className="hover:text-green-600">Contact us</a>
-              <span>|</span>
-              <a href="#" className="hover:text-green-600">Privacy Policy</a>
-              <span>|</span>
-              <a href="#" className="hover:text-green-600">Terms of Service Us</a>
+            <div className="flex justify-center items-center gap-2 mb-2">
+              <span>Parent Company:</span>
+              <Link href="https://shop.freshmate.pk/" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity">
+                <Image
+                  src={freshmatelogo}
+                  alt="Freshmate Logo"
+                  width={120}
+                  height={60}
+                  className="h-12 w-auto"
+                />
+              </Link>
             </div>
           </div>
         </div>

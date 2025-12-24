@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Navigation from "../../../components/Navigation";
-import { products, getProductById, logo } from "../../../app/assets/products";
+import { products, getProductById, logo, freshmatelogo } from "../../../app/assets/products";
 
 export async function generateStaticParams() {
   const { products } = await import('../../../app/assets/products');
@@ -23,7 +23,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
     brand: currentProduct.brand || "Dwink",
     volume: "290ml",
     packing: "24 pieces per carton packing",
-    shelfLife: "15 months",
+    shelfLife: "18 months",
     moq: "Negotiable based on requirements",
     paymentTerm: "As per mutual agreement",
     deliveryTime: "Subject to order specifications",
@@ -56,13 +56,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
         </div>
       </div>
 
-      {/* Small Hero Banner Section */}
-      <section className="relative h-32 md:h-40 w-full flex items-center justify-center" style={{background: 'linear-gradient(135deg, #C2eaba 0%, rgba(194, 234, 186, 0.8) 100%)'}}>
-        <div className="text-center text-gray-800">
-          <h1 className="text-2xl md:text-4xl font-bold mb-2">{product.name}</h1>
-          <p className="text-lg md:text-xl">Premium Dwink Product</p>
-        </div>
-      </section>
+
 
       {/* Product Detail Section */}
       <section className="py-12 bg-white">
@@ -263,28 +257,23 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
               height={75}
               className="h-16 w-auto mb-2"
             />
-            <h3 className="text-xl font-bold">Dwink</h3>
           </div>
           
           <div className="text-sm mb-4">
             <div className="flex justify-center space-x-6 mb-2">
               <span>Email: info@dwink.pk</span>
             </div>
-            <div className="flex justify-center">
-              <span>PO Box: 13002</span>
-            </div>
-          </div>
-
-          <div className="border-t border-slate-300 pt-4 text-xs">
-            <p className="mb-2">Dwink 2004 - 2025. All Rights Reserved Development by Dwink Beverage Company</p>
-            <div className="flex justify-center space-x-4">
-              <a href="#" className="hover:text-green-600">About us</a>
-              <span>|</span>
-              <a href="#" className="hover:text-green-600">Contact us</a>
-              <span>|</span>
-              <a href="#" className="hover:text-green-600">Privacy Policy</a>
-              <span>|</span>
-              <a href="#" className="hover:text-green-600">Terms of Service Us</a>
+            <div className="flex justify-center items-center gap-2 mb-2">
+              <span>Parent Company:</span>
+              <Link href="https://shop.freshmate.pk/" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity">
+                <Image
+                  src={freshmatelogo}
+                  alt="Freshmate Logo"
+                  width={120}
+                  height={60}
+                  className="h-12 w-auto"
+                />
+              </Link>
             </div>
           </div>
         </div>

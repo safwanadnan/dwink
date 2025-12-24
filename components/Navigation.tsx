@@ -29,6 +29,18 @@ export default function Navigation({ }: NavigationProps) {
 
   return (
     <header className="bg-white sticky top-0 z-50 shadow-sm">
+      {/* Top Bar */}
+      <div className="bg-teal-600 text-white py-2">
+        <div className="container-wide">
+          <div className="flex justify-center">
+            <span className="text-sm">Parent Company: </span>
+            <Link href="https://shop.freshmate.pk/" target="_blank" rel="noopener noreferrer" className="text-sm font-medium hover:underline ml-1">
+              freshmate.pk
+            </Link>
+          </div>
+        </div>
+      </div>
+      
       {/* Main Navigation */}
       <div className="bg-white shadow-sm">
         <div className="container-wide">

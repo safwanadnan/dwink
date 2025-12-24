@@ -5,11 +5,12 @@ import Link from "next/link";
 import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Navigation from "../../components/Navigation";
-import { getProductsByCategory, logo } from "../../app/assets/products";
+import { getProductsByCategory, logo, freshmatelogo } from "../../app/assets/products";
 
 function ProductsContent() {
   const searchParams = useSearchParams();
   const [activeFilter, setActiveFilter] = useState("Show All");
+  const [bottleFilter, setBottleFilter] = useState("All Bottles");
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 12;
 
@@ -25,8 +26,13 @@ function ProductsContent() {
     "Show All", "Basil Seed", "Nata de Coco", "Falooda", "Aloe Vera", "Chia Seed"
   ];
 
-  // Filter products based on active filter
-  const filteredProducts = getProductsByCategory(activeFilter);
+  const bottleFilters = ["All Bottles", "Glass", "PET"];
+
+  // Filter products based on active filter and bottle type
+  let filteredProducts = getProductsByCategory(activeFilter);
+  if (bottleFilter !== "All Bottles") {
+    filteredProducts = filteredProducts.filter(product => product.bottleType === bottleFilter);
+  }
 
   // Pagination
   const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
@@ -36,6 +42,11 @@ function ProductsContent() {
 
   const handleFilterChange = (filter: string) => {
     setActiveFilter(filter);
+    setCurrentPage(1); // Reset to first page when filter changes
+  };
+
+  const handleBottleFilterChange = (filter: string) => {
+    setBottleFilter(filter);
     setCurrentPage(1); // Reset to first page when filter changes
   };
 
@@ -57,9 +68,15 @@ function ProductsContent() {
       {/* Page Header */}
       <section className="py-16 bg-gradient-to-r from-green-50 to-blue-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-2xl md:text-3xl lg:text-5xl font-bold text-green-700 mb-4" style={{ fontFamily: 'cursive' }}>
-            Dwink Products
-          </h1>
+          <div className="flex justify-center">
+            <Image
+              src={logo}
+              alt="Dwink Logo"
+              width={300}
+              height={150}
+              className="h-24 md:h-32 lg:h-40 w-auto"
+            />
+          </div>
         </div>
       </section>
 
@@ -71,7 +88,7 @@ function ProductsContent() {
           </h2>
           
           {/* Category Filters */}
-          <div className="flex flex-wrap justify-center gap-4 mb-12">
+          <div className="flex flex-wrap justify-center gap-4 mb-8">
             {filters.map((category) => (
               <button
                 key={category}
@@ -83,6 +100,23 @@ function ProductsContent() {
                 }`}
               >
                 {category}
+              </button>
+            ))}
+          </div>
+
+          {/* Bottle Type Filters */}
+          <div className="flex flex-wrap justify-center gap-4 mb-12">
+            {bottleFilters.map((bottle) => (
+              <button
+                key={bottle}
+                onClick={() => handleBottleFilterChange(bottle)}
+                className={`px-4 py-2 rounded transition-all duration-300 text-sm font-medium ${
+                  bottleFilter === bottle 
+                    ? 'bg-blue-500 text-white shadow-lg transform scale-105' 
+                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300 hover:scale-105'
+                }`}
+              >
+                {bottle}
               </button>
             ))}
           </div>
@@ -99,32 +133,80 @@ function ProductsContent() {
 
           {/* Product Grid - Responsive horizontal layout */}
           <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 md:gap-4 mb-10">
-            {currentProducts.map((product) => (
-              <Link key={product.id} href={`/products/${product.id}`} className="group">
-                <div className="card-hover overflow-hidden">
-                  <div className="w-full h-28 md:h-32 lg:h-48 overflow-hidden">
-                    <Image 
-                      src={product.image}
-                      alt={product.name}
-                      width={200}
-                      height={200}
-                      className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300"
-                    />
+            {currentProducts.map((product) => {
+              const getProductName = () => {
+                if (product.category === 'Basil Seed') {
+                  return {
+                    line1: 'Basil Seed Drink',
+                    line2: `${product.name.replace('Basil Seed ', '')} Flavour`
+                  };
+                } else if (product.category === 'Nata de Coco') {
+                  const cleanName = product.name.replace(/^(Coco |Mr\. Coco |Nata de Coco )/i, '');
+                  return {
+                    line1: 'Nata de COCO Drink',
+                    line2: `${cleanName} Flavour`
+                  };
+                } else if (product.category === 'Falooda') {
+                  return {
+                    line1: 'Falooda Drink',
+                    line2: `${product.name.replace('Falooda ', '')} Flavour`
+                  };
+                } else if (product.category === 'Aloe Vera') {
+                  return {
+                    line1: 'Aloe Vera Drink',
+                    line2: `${product.name.replace('Aloe Vera ', '')} Flavour`
+                  };
+                } else if (product.category === 'Chia Seed') {
+                  return {
+                    line1: 'Chia Seed Drink',
+                    line2: `${product.name.replace('Chia Seed ', '')} Flavour`
+                  };
+                }
+                return { line1: product.name, line2: '' };
+              };
+              
+              const getProductDescription = () => {
+                if (product.category === 'Falooda') {
+                  return 'Non dairy milk';
+                } else if (product.category === 'Chia Seed') {
+                  const flavorName = product.name.replace('Chia Seed ', '');
+                  return `Health drink, low sugar with real ${flavorName} pulp`;
+                } else if (product.category === 'Aloe Vera') {
+                  return '30% real aloe vera pulp';
+                }
+                return null;
+              };
+              
+              const productName = getProductName();
+              const productDescription = getProductDescription();
+              
+              return (
+                <Link key={product.id} href={`/products/${product.id}`} className="group">
+                  <div className="card-hover overflow-hidden">
+                    <div className="w-full h-28 md:h-32 lg:h-48 overflow-hidden">
+                      <Image 
+                        src={product.image}
+                        alt={product.name}
+                        width={200}
+                        height={200}
+                        className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-300"
+                      />
+                    </div>
+                    <div className="p-1 md:p-2 lg:p-4">
+                      <div className="text-xs md:text-sm lg:text-base font-bold text-gray-900 mb-1 md:mb-2 group-hover:text-red-600 transition-colors text-center">
+                        <div>{productName.line1}</div>
+                        {productName.line2 && <div>{productName.line2}</div>}
+                      </div>
+                      {productDescription && (
+                        <div className="text-xs text-gray-600 text-center">
+                          {productDescription}
+                        </div>
+                      )}
+                    </div>
                   </div>
-                  <div className="p-1 md:p-2 lg:p-4">
-                    <h3 className="text-xs md:text-sm lg:text-base font-semibold text-gray-900 mb-1 md:mb-2 group-hover:text-red-600 transition-colors font-body">
-                      {product.category === 'Basil Seed' 
-                        ? `${product.name} Flavour` 
-                        : product.category === 'Nata de Coco' 
-                        ? `Nata de Coco ${product.name.replace(/^(Coco |Mr\. Coco )/i, '')} Flavour`
-                        : product.name}
-                    </h3>
-                    <p className="text-xs md:text-sm text-gray-600 mb-1 md:mb-2 font-body hidden md:block">{product.category}</p>
-                    <p className="text-xs text-gray-500 line-clamp-2 font-body hidden lg:block">{product.description}</p>
-                  </div>
-                </div>
-              </Link>
-            ))}
+                </Link>
+              );
+            })}
           </div>
 
           {/* Pagination */}
@@ -189,12 +271,6 @@ function ProductsContent() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 
               href="/contact" 
-              className="bg-white text-green-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors transform hover:scale-105"
-            >
-              Request Samples
-            </Link>
-            <Link 
-              href="/contact" 
               className="bg-green-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-green-700 transition-colors transform hover:scale-105"
             >
               Contact Us
@@ -218,31 +294,23 @@ function ProductsContent() {
               height={75}
               className="h-16 w-auto mb-2"
             />
-            <h3 className="text-xl font-bold">Dwink</h3>
           </div>
           
           <div className="text-sm mb-4">
             <div className="flex justify-center space-x-6 mb-2">
               <span>Email: info@dwink.pk</span>
             </div>
-            <div className="flex justify-center space-x-6 mb-2">
-              <span>Parent Company: info@freshmate.pk</span>
-            </div>
-            <div className="flex justify-center">
-              <span>PO Box: 13002</span>
-            </div>
-          </div>
-
-          <div className="border-t border-slate-300 pt-4 text-xs">
-            <p className="mb-2">Dwink 2004 - 2025. All Rights Reserved Development by Dwink Beverage Company</p>
-            <div className="flex justify-center space-x-4">
-              <a href="#" className="hover:text-green-600">About us</a>
-              <span>|</span>
-              <a href="#" className="hover:text-green-600">Contact us</a>
-              <span>|</span>
-              <a href="#" className="hover:text-green-600">Privacy Policy</a>
-              <span>|</span>
-              <a href="#" className="hover:text-green-600">Terms of Service Us</a>
+            <div className="flex justify-center items-center gap-2 mb-2">
+              <span>Parent Company:</span>
+              <Link href="https://shop.freshmate.pk/" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity">
+                <Image
+                  src={freshmatelogo}
+                  alt="Freshmate Logo"
+                  width={120}
+                  height={60}
+                  className="h-12 w-auto"
+                />
+              </Link>
             </div>
           </div>
         </div>
