@@ -246,7 +246,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">GET IN TOUCH</h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Have questions about this product? We&apos;d love to hear from you. Send us a message and we&apos;ll respond as soon as possible.
+              We&apos;d love to hear from you. Send us a message and we&apos;ll respond as soon as possible.
             </p>
           </div>
           

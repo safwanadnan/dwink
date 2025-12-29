@@ -3,10 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
-import { Gift, Settings, Palette, Package, Award, Truck } from "lucide-react";
 import Navigation from "../components/Navigation";
-import ContactPopup from "../components/ContactPopup";
-import { products, certificates, logo, freshmatelogo, getProductsByCategory } from "./assets/products";
+import { products, getProductsByCategory } from "./assets/products";
 
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);

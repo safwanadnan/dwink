@@ -28,8 +28,7 @@ function ProductsContent() {
 
   const bottleFilters = ["All Bottles", "Glass", "PET"];
 
-  // Filter products based on active filter and bottle type
-  let baseFilteredProducts = getProductsByCategory(activeFilter);
+  const baseFilteredProducts = getProductsByCategory(activeFilter);
   let filteredProducts = baseFilteredProducts;
   if (bottleFilter !== "All Bottles") {
     filteredProducts = baseFilteredProducts.filter(product => product.bottleType === bottleFilter);
