@@ -221,20 +221,17 @@ export default function AboutPage() {
             <div className="flex justify-center space-x-6 mb-2">
               <span>Email: info@dwink.pk</span>
             </div>
-            <div className="flex justify-center items-center gap-2 mb-2">
-              <span>Parent Company:</span>
-              <Link href="https://shop.freshmate.pk/" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity" style={{color: '#023E0B'}}>
-                freshmate.co
-              </Link>
+            <div className="flex justify-center items-center gap-2 mb-1">
+              <span>A Parent Company; Freshmate Co.</span>
             </div>
             <div className="flex justify-center mb-2">
               <Link href="https://shop.freshmate.pk/" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity">
                 <Image
                   src={freshmatelogo}
                   alt="Freshmate Logo"
-                  width={170}
-                  height={85}
-                  className="h-16 w-auto"
+                  width={190}
+                  height={95}
+                  className="h-18 w-auto"
                 />
               </Link>
             </div>

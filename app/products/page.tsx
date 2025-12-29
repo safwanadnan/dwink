@@ -29,9 +29,10 @@ function ProductsContent() {
   const bottleFilters = ["All Bottles", "Glass", "PET"];
 
   // Filter products based on active filter and bottle type
-  let filteredProducts = getProductsByCategory(activeFilter);
+  let baseFilteredProducts = getProductsByCategory(activeFilter);
+  let filteredProducts = baseFilteredProducts;
   if (bottleFilter !== "All Bottles") {
-    filteredProducts = filteredProducts.filter(product => product.bottleType === bottleFilter);
+    filteredProducts = baseFilteredProducts.filter(product => product.bottleType === bottleFilter);
   }
 
   // Pagination
@@ -42,7 +43,12 @@ function ProductsContent() {
 
   const handleFilterChange = (filter: string) => {
     setActiveFilter(filter);
+    setBottleFilter("All Bottles"); // Reset bottle filter when category changes
     setCurrentPage(1); // Reset to first page when filter changes
+    // Store current filter in localStorage
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('lastProductFilter', filter);
+    }
   };
 
   const handleBottleFilterChange = (filter: string) => {
@@ -65,22 +71,6 @@ function ProductsContent() {
         </div>
       </div>
 
-      {/* Page Header */}
-      <section className="relative h-[80vh] w-full overflow-hidden flex items-center justify-center" style={{background: 'linear-gradient(135deg, #86efac 0%, #67e8f9 50%, #7dd3fc 100%)'}}>
-        <div className="absolute inset-0 bg-black/20"></div>
-        <div className="text-center text-white z-10 max-w-6xl mx-auto px-4">
-          <div className="flex justify-center">
-            <Image
-              src={logo}
-              alt="Dwink Logo"
-              width={400}
-              height={200}
-              className="h-32 md:h-48 lg:h-64 w-auto"
-            />
-          </div>
-        </div>
-      </section>
-
       {/* Products Section */}
       <section className="py-16 bg-white">
         <div className="container-wide">
@@ -92,7 +82,7 @@ function ProductsContent() {
               <button
                 key={category}
                 onClick={() => handleFilterChange(category)}
-                className={`px-4 py-2 rounded transition-all duration-300 text-sm font-medium ${
+                className={`px-6 py-3 rounded transition-all duration-300 text-base font-medium ${
                   activeFilter === category 
                     ? 'text-white shadow-lg transform scale-105' 
                     : 'bg-slate-200 text-slate-700 hover:bg-slate-300 hover:scale-105'
@@ -105,22 +95,24 @@ function ProductsContent() {
           </div>
 
           {/* Bottle Type Filters */}
-          <div className="flex flex-wrap justify-center gap-4 mb-12">
-            {bottleFilters.map((bottle) => (
-              <button
-                key={bottle}
-                onClick={() => handleBottleFilterChange(bottle)}
-                className={`px-4 py-2 rounded transition-all duration-300 text-sm font-medium ${
-                  bottleFilter === bottle 
-                    ? 'text-white shadow-lg transform scale-105' 
-                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300 hover:scale-105'
-                }`}
-                style={bottleFilter === bottle ? {backgroundColor: '#023E0B'} : {}}
-              >
-                {bottle}
-              </button>
-            ))}
-          </div>
+          {baseFilteredProducts.some(p => p.bottleType === 'PET') && (
+            <div className="flex flex-wrap justify-center gap-4 mb-12">
+              {bottleFilters.map((bottle) => (
+                <button
+                  key={bottle}
+                  onClick={() => handleBottleFilterChange(bottle)}
+                  className={`px-3 py-2 rounded transition-all duration-300 text-sm font-medium ${
+                    bottleFilter === bottle 
+                      ? 'text-white shadow-lg transform scale-105' 
+                      : 'bg-gray-200 text-gray-700 hover:bg-gray-300 hover:scale-105'
+                  }`}
+                  style={bottleFilter === bottle ? {backgroundColor: '#023E0B'} : {}}
+                >
+                  {bottle}
+                </button>
+              ))}
+            </div>
+          )}
 
           {/* Results Count */}
           <div className="text-center mb-8">
@@ -144,7 +136,7 @@ function ProductsContent() {
                 } else if (product.category === 'Nata de Coco') {
                   const cleanName = product.name.replace(/^(Coco |Mr\. Coco |Nata de Coco )/i, '');
                   return {
-                    line1: 'Nata de COCO Drink',
+                    line1: 'Nata de Coco Drink',
                     line2: `${cleanName} Flavour`
                   };
                 } else if (product.category === 'Falooda') {
@@ -182,7 +174,12 @@ function ProductsContent() {
               const productDescription = getProductDescription();
               
               return (
-                <Link key={product.id} href={`/products/${product.id}`} className="group">
+                <Link key={product.id} href={`/products/${product.id}`} className="group" onClick={() => {
+                  // Store current filter when clicking product
+                  if (typeof window !== 'undefined') {
+                    localStorage.setItem('lastProductFilter', activeFilter);
+                  }
+                }}>
                   <div className="card-hover overflow-hidden">
                     <div className="w-full h-28 md:h-32 lg:h-48 overflow-hidden">
                       <Image 
@@ -303,20 +300,17 @@ function ProductsContent() {
             <div className="flex justify-center space-x-6 mb-2">
               <span>Email: info@dwink.pk</span>
             </div>
-            <div className="flex justify-center items-center gap-2 mb-2">
-              <span>Parent Company:</span>
-              <Link href="https://shop.freshmate.pk/" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity" style={{color: '#023E0B'}}>
-                freshmate.co
-              </Link>
+            <div className="flex justify-center items-center gap-2 mb-1">
+              <span>A Parent Company; Freshmate Co.</span>
             </div>
             <div className="flex justify-center mb-2">
               <Link href="https://shop.freshmate.pk/" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity">
                 <Image
                   src={freshmatelogo}
                   alt="Freshmate Logo"
-                  width={170}
-                  height={85}
-                  className="h-16 w-auto"
+                  width={190}
+                  height={95}
+                  className="h-18 w-auto"
                 />
               </Link>
             </div>

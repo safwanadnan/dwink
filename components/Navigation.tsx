@@ -37,9 +37,9 @@ export default function Navigation({ }: NavigationProps) {
               <Image
                 src={freshmatelogo}
                 alt="Freshmate Logo"
-                width={180}
-                height={85}
-                className="h-10 w-auto"
+                width={200}
+                height={95}
+                className="h-12 w-auto"
               />
             </Link>
           </div>

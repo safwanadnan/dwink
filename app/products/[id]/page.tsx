@@ -1,16 +1,20 @@
 import Image from "next/image";
 import Link from "next/link";
 import Navigation from "../../../components/Navigation";
+import BackNavigation from "../../../components/BackNavigation";
 import { products, getProductById, logo, freshmatelogo } from "../../../app/assets/products";
 
 export async function generateStaticParams() {
-  const { products } = await import('../../../app/assets/products');
   return products.map((product) => ({
     id: product.id,
   }));
 }
 
-export default async function ProductPage({ params }: { params: Promise<{ id: string }> }) {
+interface ProductPageProps {
+  params: Promise<{ id: string }>;
+}
+
+export default async function ProductPage({ params }: ProductPageProps) {
   const resolvedParams = await params;
   const currentProduct = getProductById(resolvedParams.id);
   
@@ -49,7 +53,7 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
           <nav className="text-sm">
             <Link href="/" className="text-gray-500 hover:text-red-600">Home</Link>
             <span className="mx-2 text-gray-400">/</span>
-            <Link href="/products" className="text-gray-500 hover:text-red-600">Products</Link>
+            <BackNavigation />
             <span className="mx-2 text-gray-400">/</span>
             <span className="text-gray-900">{product.name}</span>
           </nav>
@@ -80,9 +84,15 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
               <div>
                 <h1 className="text-xl md:text-2xl lg:text-4xl font-bold text-gray-900 mb-2">
                   {currentProduct.category === 'Basil Seed' 
-                    ? `${currentProduct.name} Flavour` 
+                    ? `Basil Seed Drink ${currentProduct.name.replace('Basil Seed ', '')} Flavour` 
                     : currentProduct.category === 'Nata de Coco' 
-                    ? `Nata de Coco ${currentProduct.name.replace(/^(Coco |Mr\. Coco )/i, '')} Flavour`
+                    ? `Nata de Coco Drink ${currentProduct.name.replace(/^(Coco |Mr\. Coco |Nata de Coco )/i, '')} Flavour`
+                    : currentProduct.category === 'Falooda'
+                    ? `Falooda Drink ${currentProduct.name.replace('Falooda ', '')} Flavour`
+                    : currentProduct.category === 'Aloe Vera'
+                    ? `Aloe Vera Drink ${currentProduct.name.replace('Aloe Vera ', '')} Flavour`
+                    : currentProduct.category === 'Chia Seed'
+                    ? `Chia Seed Drink ${currentProduct.name.replace('Chia Seed ', '')} Flavour`
                     : currentProduct.name}
                 </h1>
               </div>
@@ -95,9 +105,15 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
                     <span className="font-medium text-gray-700">Product Name:</span>
                     <span className="text-gray-900">
                       {currentProduct.category === 'Basil Seed' 
-                        ? `${currentProduct.name} Flavour` 
+                        ? `Basil Seed Drink ${currentProduct.name.replace('Basil Seed ', '')} Flavour` 
                         : currentProduct.category === 'Nata de Coco' 
-                        ? `Nata de Coco ${currentProduct.name.replace(/^(Coco |Mr\. Coco )/i, '')} Flavour`
+                        ? `Nata de Coco Drink ${currentProduct.name.replace(/^(Coco |Mr\. Coco |Nata de Coco )/i, '')} Flavour`
+                        : currentProduct.category === 'Falooda'
+                        ? `Falooda Drink ${currentProduct.name.replace('Falooda ', '')} Flavour`
+                        : currentProduct.category === 'Aloe Vera'
+                        ? `Aloe Vera Drink ${currentProduct.name.replace('Aloe Vera ', '')} Flavour`
+                        : currentProduct.category === 'Chia Seed'
+                        ? `Chia Seed Drink ${currentProduct.name.replace('Chia Seed ', '')} Flavour`
                         : currentProduct.name}
                     </span>
                   </div>
@@ -117,6 +133,16 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
                     <span className="font-medium text-gray-700">Shelf Life:</span>
                     <span className="text-gray-900">{product.shelfLife}</span>
                   </div>
+                  <div className="flex justify-between border-b border-gray-200 pb-2">
+                    <span className="font-medium text-gray-700">MOQ:</span>
+                    <span className="text-gray-900">1 × 20' (1300 Cartons)</span>
+                  </div>
+                  {currentProduct.category !== 'Falooda' && (
+                    <div className="flex justify-between border-b border-gray-200 pb-2">
+                      <span className="font-medium text-gray-700">Sugar Option:</span>
+                      <span className="text-gray-900">Regular, Low Sugar</span>
+                    </div>
+                  )}
 
                 </div>
               </div>
@@ -263,20 +289,17 @@ export default async function ProductPage({ params }: { params: Promise<{ id: st
             <div className="flex justify-center space-x-6 mb-2">
               <span>Email: info@dwink.pk</span>
             </div>
-            <div className="flex justify-center items-center gap-2 mb-2">
-              <span>Parent Company:</span>
-              <Link href="https://shop.freshmate.pk/" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity" style={{color: '#023E0B'}}>
-                freshmate.co
-              </Link>
+            <div className="flex justify-center items-center gap-2 mb-1">
+              <span>A Parent Company; Freshmate Co.</span>
             </div>
             <div className="flex justify-center mb-2">
               <Link href="https://shop.freshmate.pk/" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity">
                 <Image
                   src={freshmatelogo}
                   alt="Freshmate Logo"
-                  width={170}
-                  height={85}
-                  className="h-16 w-auto"
+                  width={190}
+                  height={95}
+                  className="h-18 w-auto"
                 />
               </Link>
             </div>
