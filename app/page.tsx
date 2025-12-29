@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import Navigation from "../components/Navigation";
-import { products, getProductsByCategory } from "./assets/products";
+import { products, certificates, logo, freshmatelogo } from "./assets/products";
 
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
