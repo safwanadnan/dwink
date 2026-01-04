@@ -19,6 +19,11 @@ function ProductsContent() {
     const filter = searchParams.get('filter');
     if (filter) {
       setActiveFilter(filter);
+    } else if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('lastProductFilter');
+      if (saved) {
+        setActiveFilter(saved);
+      }
     }
   }, [searchParams]);
 
@@ -52,7 +57,10 @@ function ProductsContent() {
 
   const handleBottleFilterChange = (filter: string) => {
     setBottleFilter(filter);
-    setCurrentPage(1); // Reset to first page when filter changes
+    setCurrentPage(1);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('lastBottleFilter', filter);
+    }
   };
 
   return (
@@ -258,26 +266,6 @@ function ProductsContent() {
         </div>
       </section>
 
-      {/* Call to Action Section */}
-      <section className="py-16" style={{background: 'linear-gradient(135deg, #C2eaba 0%, rgba(194, 234, 186, 0.8) 100%)'}}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-bold text-gray-800 mb-6">Interested in Our Products?</h2>
-          <p className="text-xl text-gray-700 mb-8 max-w-2xl mx-auto">
-            Contact us for samples, pricing, or custom manufacturing solutions. 
-            We&apos;re here to help you find the perfect beverage for your needs.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link 
-              href="/contact" 
-              className="text-white px-8 py-4 rounded-lg font-semibold transition-colors transform hover:scale-105"
-              style={{backgroundColor: '#023E0B'}}
-            >
-              Contact Us
-            </Link>
-          </div>
-        </div>
-      </section>
-
 
 
 
@@ -299,8 +287,11 @@ function ProductsContent() {
             <div className="flex justify-center space-x-6 mb-2">
               <span>Email: info@dwink.pk</span>
             </div>
-            <div className="flex justify-center items-center gap-2 mb-1">
-              <span>A Parent Company; Freshmate Co.</span>
+            <div className="flex justify-center items-center gap-0 mb-1">
+              <span>Parent Company:&nbsp;</span>
+              <Link href="https://shop.freshmate.pk/" target="_blank" rel="noopener noreferrer" className="text-green-600 hover:text-green-700 font-medium">
+                Freshmate Co.
+              </Link>
             </div>
             <div className="flex justify-center mb-2">
               <Link href="https://shop.freshmate.pk/" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity">

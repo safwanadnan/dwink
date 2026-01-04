@@ -23,10 +23,11 @@ export default function AboutPage() {
                   Dwink is the beverage division of the family behind Freshmate, Pakistan&apos;s first ready-to-eat meal brand, known for its complete range of ready meals and seasonings trusted by consumers both locally and globally. Freshmate products are exported to over 20 countries, serving travelers, professionals, and families who rely on consistent taste, halal assurance, and long shelf life without compromise. That same operational discipline, food safety rigor, and consumer trust form the foundation of Dwink.
                 </p>
                 <p>
-                  Learn more about Freshmate at{' '}
+                  Visit{' '}
                   <Link href="https://shop.freshmate.pk/" target="_blank" rel="noopener noreferrer" className="text-green-600 hover:text-green-700 font-medium">
-                    shop.freshmate.pk
-                  </Link>.
+                    Freshmate Co.
+                  </Link>
+                  {' '}to learn more.
                 </p>
               </div>
             </div>
@@ -126,28 +127,23 @@ export default function AboutPage() {
             {[
               { 
                 name: "Basil Seed Drinks", 
-                image: products.find(p => p.category === 'Basil Seed')?.image,
-                description: "Refreshing and nutritious basil seed beverages with natural flavors"
+                image: products.find(p => p.category === 'Basil Seed')?.image
               },
               { 
                 name: "Nata de Coco", 
-                image: products.find(p => p.category === 'Nata de Coco')?.image,
-                description: "Tropical coconut gel drinks with authentic taste and texture"
+                image: products.find(p => p.category === 'Nata de Coco')?.image
               },
               { 
                 name: "Falooda", 
-                image: products.find(p => p.category === 'Falooda')?.image,
-                description: "Traditional South Asian dessert drinks with modern appeal"
+                image: products.find(p => p.category === 'Falooda')?.image
               },
               { 
                 name: "Aloe Vera Drinks", 
-                image: products.find(p => p.category === 'Aloe Vera')?.image,
-                description: "Healthy aloe vera beverages with natural healing properties"
+                image: products.find(p => p.category === 'Aloe Vera')?.image
               },
               { 
                 name: "Chia Seed Drinks", 
-                image: products.find(p => p.category === 'Chia Seed')?.image,
-                description: "Nutritious chia seed drinks packed with omega-3 and fiber"
+                image: products.find(p => p.category === 'Chia Seed')?.image
               }
             ].map((category, index) => (
               <div key={index} className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
@@ -161,8 +157,7 @@ export default function AboutPage() {
                   />
                 </div>
                 <div className="p-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4">{category.name}</h3>
-                  <p className="text-gray-600">{category.description}</p>
+                  <h3 className="text-2xl font-bold text-gray-900 text-center">{category.name}</h3>
                 </div>
               </div>
             ))}
@@ -221,8 +216,11 @@ export default function AboutPage() {
             <div className="flex justify-center space-x-6 mb-2">
               <span>Email: info@dwink.pk</span>
             </div>
-            <div className="flex justify-center items-center gap-2 mb-1">
-              <span>A Parent Company; Freshmate Co.</span>
+            <div className="flex justify-center items-center gap-0 mb-1">
+              <span>Parent Company:&nbsp;</span>
+              <Link href="https://shop.freshmate.pk/" target="_blank" rel="noopener noreferrer" className="text-green-600 hover:text-green-700 font-medium">
+                Freshmate Co.
+              </Link>
             </div>
             <div className="flex justify-center mb-2">
               <Link href="https://shop.freshmate.pk/" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity">

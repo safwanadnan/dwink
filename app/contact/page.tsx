@@ -279,8 +279,11 @@ export default function ContactPage() {
             <div className="flex justify-center space-x-6 mb-2">
               <span>Email: info@dwink.pk</span>
             </div>
-            <div className="flex justify-center items-center gap-2 mb-1">
-              <span>A Parent Company; Freshmate Co.</span>
+            <div className="flex justify-center items-center gap-0 mb-1">
+              <span>Parent Company:&nbsp;</span>
+              <Link href="https://shop.freshmate.pk/" target="_blank" rel="noopener noreferrer" className="text-green-600 hover:text-green-700 font-medium">
+                Freshmate Co.
+              </Link>
             </div>
             <div className="flex justify-center mb-2">
               <Link href="https://shop.freshmate.pk/" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity">

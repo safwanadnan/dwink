@@ -72,9 +72,6 @@ export default function Home() {
                     <Link href="/products" className="bg-white text-gray-800 px-10 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:-translate-y-1">
                       Explore All Products
                     </Link>
-                    <Link href="/contact" className="border-2 border-white text-white px-10 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-gray-800 transition-all duration-300 backdrop-blur-sm">
-                      Contact Us
-                    </Link>
                   </div>
                 </div>
               </div>
@@ -195,8 +192,11 @@ export default function Home() {
             <div className="flex justify-center space-x-6 mb-2">
               <span>Email: info@dwink.pk</span>
             </div>
-            <div className="flex justify-center items-center gap-2 mb-1">
-              <span>A Parent Company; Freshmate Co.</span>
+            <div className="flex justify-center items-center gap-0 mb-1">
+              <span>Parent Company:&nbsp;</span>
+              <Link href="https://shop.freshmate.pk/" target="_blank" rel="noopener noreferrer" className="text-green-600 hover:text-green-700 font-medium">
+                Freshmate Co.
+              </Link>
             </div>
             <div className="flex justify-center mb-2">
               <Link href="https://shop.freshmate.pk/" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity">

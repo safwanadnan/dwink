@@ -22,6 +22,21 @@ export default async function ProductPage({ params }: ProductPageProps) {
     return <div>Product not found</div>;
   }
 
+  const getFormattedProductName = (prod: typeof currentProduct) => {
+    if (prod.category === 'Basil Seed') {
+      return `Basil Seed Drink ${prod.name.replace('Basil Seed ', '')} Flavour`;
+    } else if (prod.category === 'Nata de Coco') {
+      return `Nata de Coco Drink ${prod.name.replace(/^(Coco |Mr\. Coco |Nata de Coco )/i, '')} Flavour`;
+    } else if (prod.category === 'Falooda') {
+      return `Falooda Drink ${prod.name.replace('Falooda ', '')} Flavour`;
+    } else if (prod.category === 'Aloe Vera') {
+      return `Aloe Vera Drink ${prod.name.replace('Aloe Vera ', '')} Flavour`;
+    } else if (prod.category === 'Chia Seed') {
+      return `Chia Seed Drink ${prod.name.replace('Chia Seed ', '')} Flavour`;
+    }
+    return prod.name;
+  };
+
   const product = {
     ...currentProduct,
     brand: currentProduct.brand || "Dwink",
@@ -55,7 +70,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
             <span className="mx-2 text-gray-400">/</span>
             <BackNavigation />
             <span className="mx-2 text-gray-400">/</span>
-            <span className="text-gray-900">{product.name}</span>
+            <span className="text-gray-900">{getFormattedProductName(currentProduct)}</span>
           </nav>
         </div>
       </div>
@@ -83,17 +98,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
             <div className="space-y-8">
               <div>
                 <h1 className="text-xl md:text-2xl lg:text-4xl font-bold text-gray-900 mb-2">
-                  {currentProduct.category === 'Basil Seed' 
-                    ? `Basil Seed Drink ${currentProduct.name.replace('Basil Seed ', '')} Flavour` 
-                    : currentProduct.category === 'Nata de Coco' 
-                    ? `Nata de Coco Drink ${currentProduct.name.replace(/^(Coco |Mr\. Coco |Nata de Coco )/i, '')} Flavour`
-                    : currentProduct.category === 'Falooda'
-                    ? `Falooda Drink ${currentProduct.name.replace('Falooda ', '')} Flavour`
-                    : currentProduct.category === 'Aloe Vera'
-                    ? `Aloe Vera Drink ${currentProduct.name.replace('Aloe Vera ', '')} Flavour`
-                    : currentProduct.category === 'Chia Seed'
-                    ? `Chia Seed Drink ${currentProduct.name.replace('Chia Seed ', '')} Flavour`
-                    : currentProduct.name}
+                  {getFormattedProductName(currentProduct)}
                 </h1>
               </div>
 
@@ -103,19 +108,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 <div className="space-y-3">
                   <div className="flex justify-between border-b border-gray-200 pb-2">
                     <span className="font-medium text-gray-700">Product Name:</span>
-                    <span className="text-gray-900">
-                      {currentProduct.category === 'Basil Seed' 
-                        ? `Basil Seed Drink ${currentProduct.name.replace('Basil Seed ', '')} Flavour` 
-                        : currentProduct.category === 'Nata de Coco' 
-                        ? `Nata de Coco Drink ${currentProduct.name.replace(/^(Coco |Mr\. Coco |Nata de Coco )/i, '')} Flavour`
-                        : currentProduct.category === 'Falooda'
-                        ? `Falooda Drink ${currentProduct.name.replace('Falooda ', '')} Flavour`
-                        : currentProduct.category === 'Aloe Vera'
-                        ? `Aloe Vera Drink ${currentProduct.name.replace('Aloe Vera ', '')} Flavour`
-                        : currentProduct.category === 'Chia Seed'
-                        ? `Chia Seed Drink ${currentProduct.name.replace('Chia Seed ', '')} Flavour`
-                        : currentProduct.name}
-                    </span>
+                    <span className="text-gray-900">{getFormattedProductName(currentProduct)}</span>
                   </div>
                   <div className="flex justify-between border-b border-gray-200 pb-2">
                     <span className="font-medium text-gray-700">Brand:</span>
@@ -222,20 +215,36 @@ export default async function ProductPage({ params }: ProductPageProps) {
         <div className="container mx-auto px-4">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6 md:mb-12 text-center">RELATED PRODUCTS</h2>
           <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2 md:gap-4 lg:gap-6">
-            {relatedProducts.slice(0, 6).map((product) => (
-              <Link key={product.id} href={`/products/${product.id}`} className="block">
-                <div className="bg-white border rounded-lg pb-2 md:pb-4 hover:shadow-lg transition-shadow text-center">
-                  <Image 
-                    src={product.image}
-                    alt={product.name}
-                    width={200}
-                    height={200}
-                    className="w-full h-28 md:h-32 lg:h-48 object-cover mb-1 md:mb-3"
-                  />
-                  <h3 className="text-xs md:text-sm text-gray-700 leading-tight px-1">{product.name}</h3>
-                </div>
-              </Link>
-            ))}
+            {relatedProducts.slice(0, 6).map((product) => {
+              const getRelatedProductName = (prod: typeof product) => {
+                if (prod.category === 'Basil Seed') {
+                  return `Basil Seed Drink ${prod.name.replace('Basil Seed ', '')} Flavour`;
+                } else if (prod.category === 'Nata de Coco') {
+                  return `Nata de Coco Drink ${prod.name.replace(/^(Coco |Mr\. Coco |Nata de Coco )/i, '')} Flavour`;
+                } else if (prod.category === 'Falooda') {
+                  return `Falooda Drink ${prod.name.replace('Falooda ', '')} Flavour`;
+                } else if (prod.category === 'Aloe Vera') {
+                  return `Aloe Vera Drink ${prod.name.replace('Aloe Vera ', '')} Flavour`;
+                } else if (prod.category === 'Chia Seed') {
+                  return `Chia Seed Drink ${prod.name.replace('Chia Seed ', '')} Flavour`;
+                }
+                return prod.name;
+              };
+              return (
+                <Link key={product.id} href={`/products/${product.id}`} className="block">
+                  <div className="bg-white border rounded-lg pb-2 md:pb-4 hover:shadow-lg transition-shadow text-center">
+                    <Image 
+                      src={product.image}
+                      alt={product.name}
+                      width={200}
+                      height={200}
+                      className="w-full h-28 md:h-32 lg:h-48 object-cover mb-1 md:mb-3"
+                    />
+                    <h3 className="text-xs md:text-sm text-gray-700 leading-tight px-1">{getRelatedProductName(product)}</h3>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -289,8 +298,11 @@ export default async function ProductPage({ params }: ProductPageProps) {
             <div className="flex justify-center space-x-6 mb-2">
               <span>Email: info@dwink.pk</span>
             </div>
-            <div className="flex justify-center items-center gap-2 mb-1">
-              <span>A Parent Company; Freshmate Co.</span>
+            <div className="flex justify-center items-center gap-0 mb-1">
+              <span>Parent Company:&nbsp;</span>
+              <Link href="https://shop.freshmate.pk/" target="_blank" rel="noopener noreferrer" className="text-green-600 hover:text-green-700 font-medium">
+                Freshmate Co.
+              </Link>
             </div>
             <div className="flex justify-center mb-2">
               <Link href="https://shop.freshmate.pk/" target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity">
